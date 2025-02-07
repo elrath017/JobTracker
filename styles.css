@@ -73,3 +73,22 @@ li {
   display: flex;
   gap: 10px;
 }
+
+.preview {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c82333;
+}
