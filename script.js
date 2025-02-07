@@ -1,6 +1,5 @@
 // Add Firebase SDK to your HTML (before script.js)
-<script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js"></script>
+
 
 // Initialize Firebase (replace with your config)
 const firebaseConfig = {
