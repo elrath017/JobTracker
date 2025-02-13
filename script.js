@@ -1,25 +1,28 @@
-// Add Firebase SDK to your HTML (before script.js)
-
-
-// Initialize Firebase (replace with your config)
+// Firebase Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyChgIplaH3unUvrugbHwjSNGxbEaNuj27k",
   authDomain: "jobtracker-5caf6.firebaseapp.com",
   databaseURL: "https://jobtracker-5caf6-default-rtdb.firebaseio.com",
   projectId: "jobtracker-5caf6",
-  storageBucket: "jobtracker-5caf6.firebasestorage.app",
+  storageBucket: "jobtracker-5caf6.appspot.com",
   messagingSenderId: "73553516904",
   appId: "1:73553516904:web:cdce46b98cdd52a9a15edd"
 };
-firebase.initializeApp(firebaseConfig);
 
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app();
+}
 const database = firebase.database();
+console.log("Firebase initialized:", firebase.apps.length > 0); // Debugging Firebase connection
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('jobForm');
   const jobList = document.getElementById('jobs');
 
-  // Load jobs from Firebase
+  // Load jobs from Firebase on page load
   loadJobs();
 
   form.addEventListener('submit', async (e) => {
@@ -29,7 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappMessage = document.getElementById('whatsappMessage').value;
 
     if (jobLink) {
+      console.log('Adding job:', jobLink, whatsappMessage); // Debug
       const preview = await fetchLinkPreview(jobLink);
+      console.log('Link preview:', preview); // Debug
       addJob(jobLink, whatsappMessage, preview);
       form.reset();
     }
@@ -37,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function fetchLinkPreview(url) {
     try {
-      const response = await fetch(`https://api.linkpreview.net/?key=YOUR_API_KEY&q=${url}`);
+      const response = await fetch(`https://api.linkpreview.net/?key=d694a6a99e7adc5d9443a4865047de49&q=${url}`);
       const data = await response.json();
       return {
         title: data.title,
@@ -59,12 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
       appliedByFriend: false
     };
 
+    console.log('Saving job to Firebase:', job); // Debug
+
     // Save to Firebase
     const newJobRef = database.ref('jobs').push();
-    newJobRef.set(job);
+    newJobRef.set(job)
+      .then(() => console.log('Job saved successfully!'))
+      .catch((error) => console.error('Error saving job:', error));
   }
 
   function displayJob(job, jobId) {
+    console.log('Displaying job:', job); // Debug
+
     const li = document.createElement('li');
     li.id = jobId;
 
@@ -117,13 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function loadJobs() {
+    console.log('Loading jobs from Firebase...'); // Debug
     database.ref('jobs').on('value', (snapshot) => {
       jobList.innerHTML = ''; // Clear the list
       const jobs = snapshot.val();
       if (jobs) {
+        console.log('Jobs found:', jobs); // Debug
         Object.keys(jobs).forEach((jobId) => {
           displayJob(jobs[jobId], jobId);
         });
+      } else {
+        console.log('No jobs found.'); // Debug
       }
     });
   }
