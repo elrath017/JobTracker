@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
       link,
       message,
       preview,
-      appliedByMe: false,
-      appliedByFriend: false
+      appliedbyRKP: false,
+      appliedbyRKS: false
     };
 
     console.log('Saving job to Firebase:', job); // Debug
@@ -95,24 +95,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkboxes = document.createElement('div');
     checkboxes.className = 'checkboxes';
 
-    const appliedByMe = document.createElement('input');
-    appliedByMe.type = 'checkbox';
-    appliedByMe.checked = job.appliedByMe;
-    appliedByMe.addEventListener('change', () => {
-      database.ref(`jobs/${jobId}`).update({ appliedByMe: appliedByMe.checked });
+    const appliedbyRKP = document.createElement('input');
+    appliedbyRKP.type = 'checkbox';
+    appliedbyRKP.checked = job.appliedbyRKP;
+    appliedbyRKP.addEventListener('change', () => {
+      database.ref(`jobs/${jobId}`).update({ appliedbyRKP: appliedbyRKP.checked });
     });
 
-    const appliedByFriend = document.createElement('input');
-    appliedByFriend.type = 'checkbox';
-    appliedByFriend.checked = job.appliedByFriend;
-    appliedByFriend.addEventListener('change', () => {
-      database.ref(`jobs/${jobId}`).update({ appliedByFriend: appliedByFriend.checked });
+    const appliedbyRKS = document.createElement('input');
+    appliedbyRKS.type = 'checkbox';
+    appliedbyRKS.checked = job.appliedbyRKS;
+    appliedbyRKS.addEventListener('change', () => {
+      database.ref(`jobs/${jobId}`).update({ appliedbyRKS: appliedbyRKS.checked });
     });
 
-    checkboxes.appendChild(document.createTextNode('Applied by Me: '));
-    checkboxes.appendChild(appliedByMe);
-    checkboxes.appendChild(document.createTextNode(' Applied by Friend: '));
-    checkboxes.appendChild(appliedByFriend);
+    checkboxes.appendChild(document.createTextNode('Applied by RKP: '));
+    checkboxes.appendChild(appliedbyRKP);
+    checkboxes.appendChild(document.createTextNode(' Applied by RKS: '));
+    checkboxes.appendChild(appliedbyRKS);
 
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-btn';
