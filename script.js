@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     checkboxes.appendChild(document.createTextNode('Applied by RKP: '));
     checkboxes.appendChild(appliedbyRKP);
-    checkboxes.appendChild(document.createTextNode(' Applied by RKS: '));
+    checkboxes.appendChild(document.createTextNode(' Applied by : '));
     checkboxes.appendChild(appliedbyRKS);
 
     const deleteBtn = document.createElement('button');
@@ -134,8 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const jobs = snapshot.val();
       if (jobs) {
         console.log('Jobs found:', jobs); // Debug
-        Object.keys(jobs).forEach((jobId) => {
-          displayJob(jobs[jobId], jobId);
+        const jobEntries = Object.entries(jobs).reverse(); // Reverse the order of jobs
+        jobEntries.forEach(([jobId, job]) => {
+          displayJob(job, jobId);
         });
       } else {
         console.log('No jobs found.'); // Debug
