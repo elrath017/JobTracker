@@ -52,7 +52,8 @@ nav ul li a {
   transition: background-color 0.3s;
 }
 
-nav ul li a:hover, nav ul li a.active {
+nav ul li a:hover,
+nav ul li a.active {
   background-color: #555;
 }
 
@@ -67,7 +68,8 @@ label {
   font-weight: bold;
 }
 
-input[type="text"], textarea {
+input[type='text'],
+textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -152,6 +154,7 @@ button:hover {
 .slider {
   display: flex;
   transition: transform 0.5s ease-in-out;
+  height: 100%;
 }
 
 .slide {
@@ -160,6 +163,11 @@ button:hover {
   padding: 20px;
   background: #f1f1f1;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .slide h3 {
