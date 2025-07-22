@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Job - Job Application Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="navbar-container"></div>
+
+  <div class="container">
+    <h1>Add a New Job</h1>
+    <form id="addJobForm">
+      <label for="jobTitle">Job Title:</label>
+      <input type="text" id="jobTitle" required>
+
+      <label for="company">Company:</label>
+      <input type="text" id="company" required>
+
+      <label for="jobLink">Job Posting Link:</label>
+      <input type="text" id="jobLink" required>
+
+      <label for="jobDescription">Job Description/Details:</label>
+      <textarea id="jobDescription"></textarea>
+
+      <button type="submit">Add Job</button>
+    </form>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-database-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="auth..js"></script>
+  <script src="jobs.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>
